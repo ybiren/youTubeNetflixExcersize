@@ -43,7 +43,7 @@ export class LinkParserComponent implements OnInit {
     if (this.url.trim()) {
       let videoId = '';
       switch (this.source.name) {
-        case 'YOUYUBE':
+        case 'YOUTUBE':
           videoId = this.youtubeParse();
         break;
         default:
