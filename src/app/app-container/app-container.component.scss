@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  height: calc(100vh);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+  .sel-source {
+    .hdr {
+      margin-bottom: 5px;
+      color: darkblue;
+    }
+    margin-bottom: 20px;
+  }
+  app-link-parser {
+    &::ng-deep {
+      .container {
+        margin-bottom: 20px;
+      }
+    }
+  }
+  app-search-engine {
+    &::ng-deep {
+      .container {
+        margin-bottom: 20px;
+       }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+<div class="container">
+<div class="sel-source">
+  <div class="hdr">Choose source</div>
+  <select  [(ngModel)]="selSource">
+    <option *ngFor="let source of sourceArr" [value]="source">{{source.name}}</option>
+  </select>
+</div>
+<app-link-parser
+  [source]="selSource"
+  (videoParsed)="handleVideoSelected($event)">
+</app-link-parser>
+<app-search-engine
+  [source]="selSource"
+  (videoSelected)="handleVideoSelected($event)">
+</app-search-engine>
+</div>

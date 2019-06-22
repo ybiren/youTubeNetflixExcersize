@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="hdr">Search by keyword</div>
+  <div class="user-input">
+    <input type="text" [(ngModel)]="query" size=80 (keydown.enter)="doRequest()">
+    <button (click)="doRequest()">Search</button>
+  </div>
+  <div class="result-list" #elRef>
+      <virtual-scroller  #scroll [items]="items"
+        (vsUpdate)="viewPortItems = $event"
+        [parentScroll]="elRef.nativeElement"
+        [checkResizeInterval]="0"
+        [childWidth]="80"
+        [childHeight]="40">
+        <div *ngFor="let item of scroll.viewPortItems">
+          <app-result-grid
+            [videoId]="item.id.videoId"
+            [ttl]="item.snippet.title"
+            [thumbUrl]="item.snippet.thumbnails.default.url"
+            (videoSelected)="handleVideoSelected($event)">
+          </app-result-grid>
+        </div>
+      </virtual-scroller>
+   </div>
+</div>
+
