@@ -1,9 +1,4 @@
-.container {
-}
-.hdr {
-  color: darkblue;
-  margin-bottom: 5px;
-}
+
 .result-list {
   padding-top: 10px;
   height: calc(100vh - 260px);
@@ -17,4 +12,8 @@ button {
 }
 .user-input {
   display:inline;
+}
+
+virtual-scroller {
+  height: 500px;
 }

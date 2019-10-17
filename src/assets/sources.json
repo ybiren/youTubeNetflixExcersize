@@ -1,5 +1,8 @@
 [
  { "name": "YOUTUBE",
-   "url": "https://www.googleapis.com/youtube/v3/search?key=AIzaSyDgbvmqeu4J5tY74Q-qDyqpYKDRJEZHHR0&part=snippet&type=video&maxResults=50"
- }
+   "url": "https://www.googleapis.com/youtube/v3/search?key=AIzaSyBIWc6TY912DjmHzWocSlvLsg6cSUZWOaQ&part=snippet&type=video&maxResults=50"
+ },
+ { "name": "NETFLIX",
+  "url": "https://www.netflix.com"
+}
 ]

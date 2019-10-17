@@ -27,7 +27,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -127,5 +128,10 @@
       }
     }
   },
-  "defaultProject": "xperityExercise"
+  "defaultProject": "xperityExercise",
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false
+    }
+  }
 }

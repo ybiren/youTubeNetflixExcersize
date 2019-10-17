@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
 import { FormsModule } from '@angular/forms';
 import { VirtualScrollerModule } from 'ngx-virtual-scroller';
@@ -15,6 +15,8 @@ import { SearchEngineComponent } from './search-engine/search-engine.component';
 import { PlayerComponent } from './player/player.component';
 import { AppContainerComponent } from './app-container/app-container.component';
 import { ResultGridComponent } from './search-engine/result-grid/result-grid.component';
+import { YoutubeSearch } from 'src/models/classes/youtubeSearch';
+import { NetflixSearch } from 'src/models/classes/netflixSearch';
 
 @NgModule({
   declarations: [
@@ -24,11 +26,10 @@ import { ResultGridComponent } from './search-engine/result-grid/result-grid.com
     PlayerComponent,
     AppContainerComponent,
     ResultGridComponent
-
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     FormsModule,
     NgxYoutubePlayerModule.forRoot(),
     VirtualScrollerModule,
@@ -37,7 +38,7 @@ import { ResultGridComponent } from './search-engine/result-grid/result-grid.com
     MatDialogModule,
     AngularFontAwesomeModule
   ],
-  providers: [],
+  providers: [YoutubeSearch, NetflixSearch],
   bootstrap: [AppComponent],
   entryComponents: [PlayerComponent]
 })

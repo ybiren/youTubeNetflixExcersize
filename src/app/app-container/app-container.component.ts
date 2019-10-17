@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { ISource } from '../interfaces';
 import { ToastrService } from 'ngx-toastr';
 import { PlayerComponent } from '../player/player.component';
 import { MatDialog, MatDialogConfig } from '@angular/material';
+import { Observable } from 'rxjs';
+import { SearchService } from '../search.service';
 
 
 @Component({
@@ -13,29 +15,24 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 })
 export class AppContainerComponent implements OnInit {
 
-  public sourceArr: ISource[] = [];
+  public sourceArr$: Observable<ISource[]>;
   public selectedVideoId: string;
-  public selSource: ISource;
+  public selSource = 'YOUTUBE';
 
   constructor(
-    private http: Http,
+    private http: HttpClient,
     private toastr: ToastrService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private svc: SearchService) { }
 
   ngOnInit() {
-    this.getSourcrs();
+    this.sourceArr$ = this.svc.GetSources();
+    this.updateSource()
   }
 
-  // Get sources
-  getSourcrs() {
-    this.http.get('../../assets/sources.json').subscribe((res) => {
-      this.sourceArr = <ISource[]>res.json();
-      this.selSource = this.sourceArr[0];
-    }, (error) => {
-      this.toastr.error(JSON.stringify(error), 'Error');
-    });
-  }
-
+  updateSource() {
+    this.svc.UpdateSelectedSource(this.selSource);
+  }  
 
   handleVideoSelected(videoId: string) {
     this.openDialog(videoId);

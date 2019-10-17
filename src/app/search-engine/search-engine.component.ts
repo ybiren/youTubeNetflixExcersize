@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Http } from '@angular/http';
-import { ISize } from '../../../node_modules/@types/selenium-webdriver';
-import { ISource } from '../interfaces';
+import { ISource, ISearchResult } from '../interfaces';
 import { ToastrService } from '../../../node_modules/ngx-toastr';
+import { SearchService } from '../search.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -12,15 +12,15 @@ import { ToastrService } from '../../../node_modules/ngx-toastr';
 })
 export class SearchEngineComponent implements OnInit {
 
-  @Input() source: ISource;
+  @Input() source: string;
   @Output() videoSelected: EventEmitter<string>  = new EventEmitter<string>();
 
   public query: string;
-  public items: any[]  = [];
+  public items$: Observable<ISearchResult[]>
 
   constructor(
-    private http: Http,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private svc: SearchService) { }
 
   ngOnInit() {
   }
@@ -28,11 +28,17 @@ export class SearchEngineComponent implements OnInit {
 
   // Do web request for given keyword
   doRequest() {
+    this.items$ = this.svc.DoSearch(this.source, this.query);
+    
+    /*
     this.http.get(`${this.source.url}&q=${this.query}`).subscribe((res) => {
       this.items = res.json().items;
     }, (error) => {
+      console.log(error);
       this.toastr.error(JSON.stringify(error), 'Error');
     });
+    */
+
   }
 
   handleVideoSelected(videoId: string) {
